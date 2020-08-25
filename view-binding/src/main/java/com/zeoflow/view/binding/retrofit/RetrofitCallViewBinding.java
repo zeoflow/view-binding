@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import com.zeoflow.view.binding.ViewModel;
+import com.zeoflow.view.binding.ViewBinding;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public abstract class RetrofitCallViewModel extends ViewModel
+public abstract class RetrofitCallViewBinding extends ViewBinding
 {
     private Map<String, Call> mCalls = new HashMap<>();
 

@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.zeoflow.view.binding.sample.MainViewModel" />
+            name="viewBinding"
+            type="com.zeoflow.view.binding.sample.MainViewBinding" />
     </data>
 
     <LinearLayout
@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_enter_your_name"
             android:inputType="textPersonName|textCapWords"
-            android:text="@={viewModel.txt}" />
+            android:textColor="@color/colorAccent"
+            android:text="@={viewBinding.txt}" />
 
 
         <FrameLayout
@@ -33,10 +34,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@{@string/hello(viewModel.txt)}"
+                android:text="@{@string/hello(viewBinding.txt)}"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
                 android:textColor="@color/colorPrimary"
-                app:show="@{viewModel.txt != null &amp;&amp; !viewModel.txt.empty}"
+                app:show="@{viewBinding.txt != null &amp;&amp; !viewBinding.txt.empty}"
                 tools:text="@string/hello" />
         </FrameLayout>
 
@@ -45,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:onClick="@{() -> viewModel.showDialog()}"
+            android:onClick="@{() -> viewBinding.showDialog()}"
             android:text="@string/button_dialog_fragment" />
     </LinearLayout>
 </layout>

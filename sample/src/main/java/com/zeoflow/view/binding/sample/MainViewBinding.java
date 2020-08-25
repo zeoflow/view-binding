@@ -5,12 +5,14 @@ import android.widget.Toast;
 
 import androidx.databinding.ObservableField;
 
-import com.zeoflow.view.binding.ViewModel;
+import com.zeoflow.view.binding.ViewBinding;
 
-public class MainViewModel extends ViewModel
+public class MainViewBinding extends ViewBinding
 {
     public ObservableField<String> name = new ObservableField<>();
     public ObservableField<String> txt = new ObservableField<>();
+    public ObservableField<Integer> color = new ObservableField<>();
+
 
     @Override
     public void onViewModelCreated()

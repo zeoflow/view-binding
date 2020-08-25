@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.ViewDataBinding;
 
-public abstract class ViewModelActivity<T extends ViewDataBinding, S extends ViewModel> extends AppCompatActivity implements ViewInterface<T, S>, OnViewModelInitializedCallback<S>
+public abstract class ViewModelActivity<T extends ViewDataBinding, S extends ViewBinding> extends AppCompatActivity implements ViewInterface<T, S>, OnViewModelInitializedCallback<S>
 {
     private final ViewModelBindingHelper<S, T> mViewModelBindingHelper = new ViewModelBindingHelper<>();
 

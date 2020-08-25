@@ -15,12 +15,12 @@ import java.util.Map;
 public class PermissionsManager
 {
     private static final int RC_PERMISSIONS = 62538;
-    ViewModel mViewModel;
+    ViewBinding mViewBinding;
     private PermissionCallback mCallback;
 
-    PermissionsManager(ViewModel viewModel)
+    PermissionsManager(ViewBinding viewBinding)
     {
-        mViewModel = viewModel;
+        mViewBinding = viewBinding;
     }
 
     public void checkOrRequestPermissions(String permission, PermissionCallback callback)
@@ -41,12 +41,12 @@ public class PermissionsManager
 
     public boolean shouldShowRequestPermissionRationale(String permission)
     {
-        if (mViewModel.getView() instanceof Fragment)
+        if (mViewBinding.getView() instanceof Fragment)
         {
-            return ((Fragment) mViewModel.getView()).shouldShowRequestPermissionRationale(permission);
+            return ((Fragment) mViewBinding.getView()).shouldShowRequestPermissionRationale(permission);
         } else
         {
-            return ActivityCompat.shouldShowRequestPermissionRationale(mViewModel.getActivity(), permission);
+            return ActivityCompat.shouldShowRequestPermissionRationale(mViewBinding.getActivity(), permission);
         }
     }
 
@@ -55,7 +55,7 @@ public class PermissionsManager
         Map<String, Boolean> results = new HashMap<>();
         for (String permission : permissions)
         {
-            int result = ContextCompat.checkSelfPermission(mViewModel.getApplicationContext(), permission);
+            int result = ContextCompat.checkSelfPermission(mViewBinding.getApplicationContext(), permission);
             results.put(permission, result == PackageManager.PERMISSION_GRANTED);
         }
         return new PermissionsResult(results);
@@ -69,12 +69,12 @@ public class PermissionsManager
     public void requestPermissions(String[] permissions, PermissionCallback callback)
     {
         mCallback = callback;
-        if (mViewModel.getView() instanceof Fragment)
+        if (mViewBinding.getView() instanceof Fragment)
         {
-            ((Fragment) mViewModel.getView()).requestPermissions(permissions, RC_PERMISSIONS);
+            ((Fragment) mViewBinding.getView()).requestPermissions(permissions, RC_PERMISSIONS);
         } else
         {
-            ActivityCompat.requestPermissions(mViewModel.getActivity(), permissions, RC_PERMISSIONS);
+            ActivityCompat.requestPermissions(mViewBinding.getActivity(), permissions, RC_PERMISSIONS);
         }
     }
 
@@ -82,7 +82,7 @@ public class PermissionsManager
     {
         Intent intent = new Intent();
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        Uri uri = Uri.fromParts("package", mViewModel.getApplicationContext().getPackageName(), null);
+        Uri uri = Uri.fromParts("package", mViewBinding.getApplicationContext().getPackageName(), null);
         intent.setData(uri);
         return intent;
     }

@@ -21,9 +21,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * ViewModel base class. Every ViewModel must extend this class
  */
-public abstract class ViewModel extends BaseObservable
+public abstract class ViewBinding extends BaseObservable
 {
-    private ViewInterface<?, ? extends ViewModel> mView;
+    private ViewInterface<?, ? extends ViewBinding> mView;
     private String mViewModelId;
     private Handler mHandler = new Handler();
     private Thread mUiThread;
@@ -32,7 +32,7 @@ public abstract class ViewModel extends BaseObservable
     private Context mApplicationContext;
     private PermissionsManager mPermissionsManager = new PermissionsManager(this);
 
-    public ViewModel()
+    public ViewBinding()
     {
     }
 
@@ -102,7 +102,7 @@ public abstract class ViewModel extends BaseObservable
      *
      * @return currently attached View or null if no View is attached
      */
-    public ViewInterface<?, ? extends ViewModel> getView()
+    public ViewInterface<?, ? extends ViewBinding> getView()
     {
         return mView;
     }
@@ -230,7 +230,7 @@ public abstract class ViewModel extends BaseObservable
      *
      * @param viewInterface View
      */
-    protected void bindView(ViewInterface<?, ? extends ViewModel> viewInterface)
+    protected void bindView(ViewInterface<?, ? extends ViewBinding> viewInterface)
     {
         mView = viewInterface;
     }

@@ -14,7 +14,7 @@ import androidx.databinding.ViewDataBinding;
  *
  * @param <T> Generated Data Binding layout class
  */
-public interface ViewInterface<T extends ViewDataBinding, S extends ViewModel>
+public interface ViewInterface<T extends ViewDataBinding, S extends ViewBinding>
 {
     Context getContext();
 

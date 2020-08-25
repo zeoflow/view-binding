@@ -18,7 +18,7 @@ public class ViewModelProvider
     /**
      * HashMap storing ViewModel instances
      */
-    private final HashMap<String, ViewModel> mViewModels;
+    private final HashMap<String, ViewBinding> mViewModels;
 
     private ViewModelProvider()
     {
@@ -58,7 +58,7 @@ public class ViewModelProvider
      */
 //	@SuppressWarnings("unchecked")
     @NonNull
-    public synchronized <T extends ViewModel> ViewModelWrapper<T> getViewModel(Context context, String viewModelId, @NonNull Class<T> viewModelClass)
+    public synchronized <T extends ViewBinding> ViewModelWrapper<T> getViewModel(Context context, String viewModelId, @NonNull Class<T> viewModelClass)
     {
         // try to get the instance from in-memory map
         T instance = (T) mViewModels.get(viewModelId);
@@ -82,7 +82,7 @@ public class ViewModelProvider
      * Wrapper around ViewModel instance bearing additional information
      * such as a flag indicating if the instance was created or restored
      */
-    public static class ViewModelWrapper<V extends ViewModel>
+    public static class ViewModelWrapper<V extends ViewBinding>
     {
         @NonNull
         private final V mViewModel;

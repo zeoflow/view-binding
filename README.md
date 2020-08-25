@@ -9,7 +9,7 @@ A lightweight library aiming to speed up Android app development by leveraging t
 2. **You don't need to care about screen rotation (configuration change) at all.**
  Most of the screen lifecycle is moved to ViewModel where the lifecycle is dramatically easier to understand and to use. The **ViewModel instance outlives it's Activity/Fragment** during configuration change so no more hassle with `onSaveInstanceState()` or using retained Fragments.
 3. **ViewModel as the only variable in the layout**
- ViewModel serves as the data provider in layout's binding as well as handler for click or other methods common fro Data Binding. With a construct like `android:onClick="@{viewModel.onClickedPlayButton}"` **you will never have to set an `OnClickListener` anymore**. Also, each ViewModel extends `BaseObservable` so you have a choice between using BaseObservable approach or ObservableField approach within the DataBinding. (see [Data Binding Guide](http://developer.android.com/tools/data-binding/guide.html))
+ ViewModel serves as the data provider in layout's binding as well as handler for click or other methods common fro Data Binding. With a construct like `android:onClick="@{viewBinding.onClickedPlayButton}"` **you will never have to set an `OnClickListener` anymore**. Also, each ViewModel extends `BaseObservable` so you have a choice between using BaseObservable approach or ObservableField approach within the DataBinding. (see [Data Binding Guide](http://developer.android.com/tools/data-binding/guide.html))
 
 ### How does it work?
 The framework extensively uses Java Generics to provide a type-safe link between Activity/Fragment and ViewModel and its binding.
@@ -59,8 +59,8 @@ public class MainActivity extends ViewModelActivity<ActivityMainBinding, MainVie
 	<data>
 
 		<variable
-			name="viewModel"
-			type="com.zeoflow.view.binding.sample.MainViewModel" />
+			name="viewBinding"
+			type="com.zeoflow.view.binding.sample.MainViewBinding" />
 	</data>
 
 	<LinearLayout
@@ -76,7 +76,7 @@ public class MainActivity extends ViewModelActivity<ActivityMainBinding, MainVie
 			<EditText
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@={viewModel.name}"
+				android:text="@={viewBinding.name}"
 				android:inputType="textPersonName|textCapWords"
 				android:hint="@string/hint_enter_your_name" />
 		</android.support.design.widget.TextInputLayout>
@@ -94,8 +94,8 @@ public class MainActivity extends ViewModelActivity<ActivityMainBinding, MainVie
 				android:layout_gravity="center"
 				android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
 				android:textColor="@color/colorPrimary"
-				android:text="@{@string/hello(viewModel.name)}"
-				app:show="@{viewModel.name != null &amp;&amp; !viewModel.name.empty}"
+				android:text="@{@string/hello(viewBinding.name)}"
+				app:show="@{viewBinding.name != null &amp;&amp; !viewBinding.name.empty}"
 				tools:text="@string/hello" />
 		</FrameLayout>
 
@@ -104,7 +104,7 @@ public class MainActivity extends ViewModelActivity<ActivityMainBinding, MainVie
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:onClick="@{() -> viewModel.showDialog()}"
+			android:onClick="@{() -> viewBinding.showDialog()}"
 			android:text="@string/button_dialog_fragment"
 			style="@style/Widget.AppCompat.Button.Colored" />
 	</LinearLayout>
@@ -182,7 +182,7 @@ To deploy new screens even faster, use the included [Android Studio Template](/e
 - `getBinding()` is now public in ViewModel
 
 #### v0.8 (Jan 19, 2016)
-- ViewModelConfig can be created without `BR.viewModel` as long as the name ov the binding variable is `viewModel`
+- ViewModelConfig can be created without `BR.viewBinding` as long as the name ov the binding variable is `viewBinding`
 - Added `onViewModelCreated()` callback in ViewModel
 - *BREAKING* Renamed ~~`onModelRemoved()`~~ to `onViewModelDestroyed()` callback in ViewModel
 - Added `getResources()` convenience method to ViewModel

@@ -24,7 +24,7 @@ import java.util.UUID;
  * @param <R> ViewModel type
  * @param <T> generated Data Binding class representing the layout
  */
-public class ViewModelBindingHelper<R extends ViewModel, T extends ViewDataBinding>
+public class ViewModelBindingHelper<R extends ViewBinding, T extends ViewDataBinding>
 {
     private static final String LOG_TAG = "ViewModelBindingHelper";
     private String mViewModelId;
@@ -42,7 +42,7 @@ public class ViewModelBindingHelper<R extends ViewModel, T extends ViewDataBindi
      * @param savedInstanceState             savedInstance state from {@link Activity#onCreate(Bundle)} or
      *                                       {@link Fragment#onCreate(Bundle)}
      * @param onViewModelInitializedCallback callback to be called after the viewModel was created
-     *                                       (used to be able to setup ViewModel from Activity/Fragment before {@link ViewModel#onViewModelCreated()} is called)
+     *                                       (used to be able to setup ViewModel from Activity/Fragment before {@link ViewBinding#onViewModelCreated()} is called)
      */
     public void onCreate(ViewInterface<T, R> view, @Nullable Bundle savedInstanceState, OnViewModelInitializedCallback<R> onViewModelInitializedCallback)
     {

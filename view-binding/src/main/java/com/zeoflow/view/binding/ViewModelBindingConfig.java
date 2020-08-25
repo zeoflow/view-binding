@@ -7,7 +7,7 @@ import androidx.annotation.LayoutRes;
  * <p>
  * Config contains layout resource ID, ViewModel class, ViewModel binding variable name
  */
-class ViewModelBindingConfig<T extends ViewModel>
+class ViewModelBindingConfig<T extends ViewBinding>
 {
     @LayoutRes
     int mLayoutResource;
@@ -38,7 +38,7 @@ class ViewModelBindingConfig<T extends ViewModel>
      */
     public ViewModelBindingConfig(@LayoutRes int layoutResource, Class<T> viewModelClass)
     {
-        this(layoutResource, viewModelClass, com.zeoflow.view.binding.BR.viewModel, com.zeoflow.view.binding.BR.view);
+        this(layoutResource, viewModelClass, BR.viewBinding, com.zeoflow.view.binding.BR.view);
     }
 
     public int getLayoutResource()
