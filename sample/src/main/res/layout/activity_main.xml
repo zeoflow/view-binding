@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_enter_your_name"
             android:inputType="textPersonName|textCapWords"
-            android:text="@={viewModel.name}" />
+            android:text="@={viewModel.txt}" />
 
 
         <FrameLayout
@@ -33,13 +33,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@{@string/hello(viewModel.name)}"
+                android:text="@{@string/hello(viewModel.txt)}"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
                 android:textColor="@color/colorPrimary"
-                app:show="@{viewModel.name != null &amp;&amp; !viewModel.name.empty}"
+                app:show="@{viewModel.txt != null &amp;&amp; !viewModel.txt.empty}"
                 tools:text="@string/hello" />
         </FrameLayout>
-
 
         <Button
             style="@style/Widget.AppCompat.Button.Colored"

@@ -86,7 +86,7 @@ public class ViewModelBindingHelper<R extends ViewModel, T extends ViewDataBindi
         if (viewModelWrapper.wasCreated())
         {
             if (onViewModelInitializedCallback != null)
-                onViewModelInitializedCallback.onViewModelInitialized(mViewModel);
+                onViewModelInitializedCallback.onViewBindingInitialised(mViewModel);
             mViewModel.onViewModelCreated();
         }
         mViewModel.onViewAttached(viewModelWrapper.wasCreated());
@@ -178,7 +178,7 @@ public class ViewModelBindingHelper<R extends ViewModel, T extends ViewDataBindi
      * @return ViewModel instance
      */
     @Nullable
-    public R getViewModel()
+    public R getViewBinding()
     {
         return mViewModel;
     }

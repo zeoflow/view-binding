@@ -100,13 +100,13 @@ public abstract class ViewModelFragment<T extends ViewDataBinding, S extends Vie
     }
 
     @Override
-    public void onViewModelInitialized(S viewModel)
+    public void onViewBindingInitialised(S viewModel)
     {
     }
 
     public S getViewModel()
     {
-        return mViewModelBindingHelper.getViewModel();
+        return mViewModelBindingHelper.getViewBinding();
     }
 
     protected void setupViewModel(@LayoutRes int layoutResourceId, Class<S> viewModelClass)

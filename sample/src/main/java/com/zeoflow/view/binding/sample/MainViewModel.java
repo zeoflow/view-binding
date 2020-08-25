@@ -10,6 +10,7 @@ import com.zeoflow.view.binding.ViewModel;
 public class MainViewModel extends ViewModel
 {
     public ObservableField<String> name = new ObservableField<>();
+    public ObservableField<String> txt = new ObservableField<>();
 
     @Override
     public void onViewModelCreated()
@@ -41,6 +42,6 @@ public class MainViewModel extends ViewModel
 
     public void showDialog()
     {
-        Toast.makeText(getApplicationContext(), "this", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), String.valueOf(txt.get()), Toast.LENGTH_SHORT).show();
     }
 }

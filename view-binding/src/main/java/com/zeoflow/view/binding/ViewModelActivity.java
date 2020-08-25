@@ -91,17 +91,17 @@ public abstract class ViewModelActivity<T extends ViewDataBinding, S extends Vie
     }
 
     @Override
-    public void onViewModelInitialized(S viewModel)
+    public void onViewBindingInitialised(S viewModel)
     {
     }
 
-    public S getViewModel()
+    public S getViewBinding()
     {
-        return mViewModelBindingHelper.getViewModel();
+        return mViewModelBindingHelper.getViewBinding();
     }
 
-    protected void setupViewModel(@LayoutRes int layoutResourceId, Class<S> viewModelClass)
+    protected void setupViewBinding(@LayoutRes int layoutResourceId, Class<S> viewBindingClass)
     {
-        mViewModelBindingHelper.setup(layoutResourceId, viewModelClass);
+        mViewModelBindingHelper.setup(layoutResourceId, viewBindingClass);
     }
 }
