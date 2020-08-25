@@ -16,7 +16,35 @@ The framework extensively uses Java Generics to provide a type-safe link between
 
 ViewModel instances are stored in a global static Map and reattached automatically to corresponding Activity/Fragment. When there is no need for the ViewModel anymore (Activity finished) the instance is destroyed.
 
-### Activity/Fragment
+### 1. Depend on our library
+
+View Binding for Android is available through Google's Maven Repository.
+To use it:
+
+1.  Open the `build.gradle` file for your application.
+2.  Make sure that the `repositories` section includes Google's Maven Repository
+    `google()`. For example:
+
+    ```groovy
+      allprojects {
+        repositories {
+          google()
+          jcenter()
+        }
+      }
+    ```
+
+3.  Add the library to the `dependencies` section:
+
+    ```groovy
+      dependencies {
+        // ...
+        implementation 'com.zeoflow:view-binding:<version>'
+        // ...
+      }
+    ```
+
+### 2. Activity/Fragment Class
 `MainActivity.java`
 
 ```java
@@ -37,7 +65,8 @@ public class MainActivity extends BindAppActivity<ActivityMainBinding, MainViewB
     //..
 }
 ```
-    
+
+### 3. Activity/Fragment Layout
 `activity_main.xml`
 
 ```xml
@@ -100,8 +129,7 @@ public class MainActivity extends BindAppActivity<ActivityMainBinding, MainViewB
 
 ```
 
-    
-### ViewModel
+### 4. ViewModel
 `MainViewModel.java`
 
 ```java
