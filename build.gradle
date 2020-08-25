@@ -43,6 +43,7 @@ ext {
 
     zeoflow = [
             z_core           : 'com.zeoflow:z-core:1.0.0',
-            material_elements: 'com.zeoflow:material-elements:1.1.1'
+            material_elements: 'com.zeoflow:material-elements:1.1.1',
+            view_binding     : 'com.zeoflow:view-binding:1.0.0'
     ]
 }
