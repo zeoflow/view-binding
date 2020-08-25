@@ -49,7 +49,7 @@ public abstract class ViewModelActivity<T extends ViewDataBinding, S extends Vie
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState)
+    protected void onSaveInstanceState(@NonNull Bundle outState)
     {
         mViewModelBindingHelper.onSaveInstanceState(outState);
         super.onSaveInstanceState(outState);

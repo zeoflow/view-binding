@@ -2,6 +2,7 @@ package com.zeoflow.view.binding.retrofit;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import com.zeoflow.view.binding.ViewModel;
 
@@ -32,7 +33,7 @@ public abstract class RetrofitCallViewModel extends ViewModel
     {
         for (String callId : mCalls.keySet())
         {
-            new Thread(mCalls.get(callId)::cancel).start();
+            new Thread(Objects.requireNonNull(mCalls.get(callId))::cancel).start();
         }
         mCalls.clear();
     }

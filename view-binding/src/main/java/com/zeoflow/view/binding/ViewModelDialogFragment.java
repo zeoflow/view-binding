@@ -26,7 +26,7 @@ public abstract class ViewModelDialogFragment<T extends ViewDataBinding, S exten
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         mViewModelBindingHelper.onCreate(this, savedInstanceState, this);
         return mViewModelBindingHelper.getBinding().getRoot();
@@ -68,7 +68,7 @@ public abstract class ViewModelDialogFragment<T extends ViewDataBinding, S exten
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState)
+    public void onSaveInstanceState(@NonNull Bundle outState)
     {
         mViewModelBindingHelper.onSaveInstanceState(outState);
         super.onSaveInstanceState(outState);

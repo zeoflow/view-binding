@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -139,7 +140,7 @@ public class ViewModelBindingHelper<R extends ViewModel, T extends ViewDataBindi
     public void onDestroy(@NonNull Fragment fragment)
     {
         if (mViewModel == null) return;
-        if (fragment.getActivity().isFinishing())
+        if (Objects.requireNonNull(fragment.getActivity()).isFinishing())
         {
             removeViewModel();
         } else if (fragment.isRemoving())

@@ -104,7 +104,7 @@ public class PermissionsManager
         void onPermissionsResult(PermissionsResult permissionsResult);
     }
 
-    public class PermissionsResult
+    public static class PermissionsResult
     {
         Map<String, Boolean> mResult;
 
