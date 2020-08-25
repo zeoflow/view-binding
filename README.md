@@ -22,19 +22,19 @@ ViewModel instances are stored in a global static Map and reattached automatical
 ```java
 public class MainActivity extends BindAppActivity<ActivityMainBinding, MainViewBinding>
 {
-	//..
+    //..
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
-		//..
+        //..
         setupViewBinding(R.layout.activity_main, MainViewBinding.class);
-		//..
+        //..
         super.onCreate(savedInstanceState);
-		//..
+        //..
         MainViewBinding mMainViewBinding = getViewBinding();
-		//..
+        //..
     }
-	//..
+    //..
 }
 ```
     
