@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="androidx.core.content.ContextCompat" />
+
         <variable
             name="viewBinding"
             type="com.zeoflow.view.binding.sample.MainViewBinding" />
@@ -12,17 +14,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:padding="@dimen/activity_padding">
 
-        <EditText
+        <com.zeoflow.material.elements.textfield.TextInputLayout
+            style="@style/MaterialElements.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_enter_your_name"
-            android:inputType="textPersonName|textCapWords"
-            android:textColor="@color/colorAccent"
-            android:text="@={viewBinding.txt}" />
+            android:hint=""
+            android:theme="@style/AppTheme2"
+            app:setBoxStrokeColor="@{viewBinding.colorRes}">
 
+            <com.zeoflow.material.elements.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewBinding.text}"
+                app:setTextColor="@{viewBinding.colorRes}" />
+        </com.zeoflow.material.elements.textfield.TextInputLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -30,14 +39,13 @@
             android:layout_weight="1"
             android:animateLayoutChanges="true">
 
-            <TextView
+            <com.zeoflow.material.elements.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@{@string/hello(viewBinding.txt)}"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-                android:textColor="@color/colorPrimary"
-                app:show="@{viewBinding.txt != null &amp;&amp; !viewBinding.txt.empty}"
+                android:textColor="@color/colorAccent"
+                app:setText="@{@string/hello(viewBinding.text)}"
+                app:show="@{viewBinding.text != null &amp;&amp; !viewBinding.text.empty}"
                 tools:text="@string/hello" />
         </FrameLayout>
 

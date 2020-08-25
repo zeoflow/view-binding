@@ -1,10 +1,11 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
 	compileSdkVersion rootProject.ext.compileSdkVersion
 	buildToolsVersion rootProject.ext.buildToolsVersion
 	defaultConfig {
-		applicationId "com.zeoflow.z.bind"
+		applicationId "com.zeoflow.bind"
 		minSdkVersion rootProject.ext.minSdkVersion
 		targetSdkVersion rootProject.ext.targetSdkVersion
 		versionCode rootProject.ext.versionCode
@@ -16,9 +17,7 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 	}
-	dataBinding {
-		enabled = true;
-	}
+	android.buildFeatures.dataBinding = true;
 
 	lintOptions {
 		abortOnError false
@@ -34,6 +33,14 @@ dependencies {
 	implementation 'androidx.appcompat:appcompat:1.2.0'
 	implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
 
+	implementation zeoflow.z_core
+	implementation zeoflow.material_elements
+	
 	implementation project(':view-binding')
-//	implementation zeoflow.view_binding
+
+	implementation "androidx.core:core-ktx:1.3.1"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+	mavenCentral()
 }

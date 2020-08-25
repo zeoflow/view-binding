@@ -12,15 +12,15 @@ import java.util.HashMap;
  * The instance is either created using default constructor or if it exists - retrieved from a static in-memory
  * map storing previously created instances.
  */
-public class ViewModelProvider
+public class BindProvider
 {
-    private static ViewModelProvider sInstance;
+    private static BindProvider sInstance;
     /**
      * HashMap storing ViewModel instances
      */
     private final HashMap<String, ViewBinding> mViewModels;
 
-    private ViewModelProvider()
+    private BindProvider()
     {
         mViewModels = new HashMap<>();
     }
@@ -28,12 +28,12 @@ public class ViewModelProvider
     /**
      * Static instance getter
      *
-     * @return static {@link ViewModelProvider} instance
+     * @return static {@link BindProvider} instance
      */
-    public static ViewModelProvider getInstance()
+    public static BindProvider getInstance()
     {
         if (sInstance == null)
-            sInstance = new ViewModelProvider();
+            sInstance = new BindProvider();
         return sInstance;
     }
 

@@ -11,9 +11,9 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
-import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
-public abstract class ViewModelDialogFragment<T extends ViewDataBinding, S extends ViewBinding> extends DialogFragment implements ViewInterface<T, S>, OnViewModelInitializedCallback<S>
+public abstract class BindFragment<T extends ViewDataBinding, S extends ViewBinding> extends Fragment implements ViewInterface<T, S>, OnViewModelInitializedCallback<S>
 {
     private final ViewModelBindingHelper<S, T> mViewModelBindingHelper = new ViewModelBindingHelper<>();
 

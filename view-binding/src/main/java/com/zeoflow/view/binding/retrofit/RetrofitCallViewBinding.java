@@ -1,10 +1,10 @@
 package com.zeoflow.view.binding.retrofit;
 
+import com.zeoflow.view.binding.ViewBinding;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import com.zeoflow.view.binding.ViewBinding;
 
 import retrofit2.Call;
 import retrofit2.Callback;

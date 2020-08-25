@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
 	compileSdkVersion rootProject.ext.compileSdkVersion
@@ -15,7 +16,7 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 	}
-	dataBinding.enabled = true;
+	android.buildFeatures.dataBinding = true
 	lintOptions {
 		abortOnError false
 	}
@@ -27,8 +28,15 @@ android {
 
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
-	implementation 'androidx.appcompat:appcompat:1.2.0'
-	implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
-	implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+	implementation 'com.squareup.retrofit2:retrofit:2.7.0'
+	implementation zeoflow.z_core
+	implementation zeoflow.material_elements
+	implementation "androidx.core:core-ktx:+"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+apply from: "${rootProject.projectDir}/view-binding/maven-push.gradle"
+repositories {
+	mavenCentral()
 }
 

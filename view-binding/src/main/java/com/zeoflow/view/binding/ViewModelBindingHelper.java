@@ -19,7 +19,7 @@ import java.util.UUID;
  * The core class of the framework connecting the View with the ViewModel and incorporating Data Binding.
  * The View (either Fragment or Activity) should call pass appropriate callbacks to an instance of {@link ViewModelBindingHelper}.
  * <p>
- * See {@link ViewModelActivity} or {@link ViewModelFragment} for an example of usage
+ * See {@link BindAppActivity} or {@link BindFragment} for an example of usage
  *
  * @param <R> ViewModel type
  * @param <T> generated Data Binding class representing the layout
@@ -37,7 +37,7 @@ public class ViewModelBindingHelper<R extends ViewBinding, T extends ViewDataBin
     /**
      * Call from {@link Activity#onCreate(Bundle)} or {@link Fragment#onCreate(Bundle)} to initialize ViewModel
      * <p>
-     * The ViewModel instance will be either restored from memory or instantiated via {@link ViewModelProvider}
+     * The ViewModel instance will be either restored from memory or instantiated via {@link BindProvider}
      *
      * @param savedInstanceState             savedInstance state from {@link Activity#onCreate(Bundle)} or
      *                                       {@link Fragment#onCreate(Bundle)}
@@ -59,7 +59,6 @@ public class ViewModelBindingHelper<R extends ViewBinding, T extends ViewDataBin
             mBinding = DataBindingUtil.inflate(LayoutInflater.from(view.getContext()), mViewModelConfig.getLayoutResource(), null, false);
         else
             throw new IllegalArgumentException("View must be an instance of Activity or Fragment (support-v4).");
-
         // handle case when ViewModel is not desired
         if (mViewModelConfig.getViewModelClass() == null)
         {
@@ -75,13 +74,12 @@ public class ViewModelBindingHelper<R extends ViewBinding, T extends ViewDataBin
                 mViewModelId = savedInstanceState.getString(getViewModelIdFieldName());
         }
         // get ViewModel instance for this screen
-        final ViewModelProvider.ViewModelWrapper<R> viewModelWrapper = ViewModelProvider.getInstance().getViewModel(view.getContext(), mViewModelId, mViewModelConfig.getViewModelClass());
+        final BindProvider.ViewModelWrapper<R> viewModelWrapper = BindProvider.getInstance().getViewModel(view.getContext(), mViewModelId, mViewModelConfig.getViewModelClass());
         mViewModel = viewModelWrapper.getViewModel();
         // bind all together
         mViewModel.bindView(view);
         mBinding.setVariable(mViewModelConfig.getViewModelVariableName(), mViewModel);
         mBinding.setVariable(mViewModelConfig.getViewVariableName(), view);
-
         // call ViewModel callback
         if (viewModelWrapper.wasCreated())
         {
@@ -240,7 +238,7 @@ public class ViewModelBindingHelper<R extends ViewBinding, T extends ViewDataBin
     {
         if (!mModelRemoved)
         {
-            ViewModelProvider.getInstance().removeViewModel(mViewModelId);
+            BindProvider.getInstance().removeViewModel(mViewModelId);
             mViewModel.onViewModelDestroyed();
             mModelRemoved = true;
             mAlreadyCreated = false;
