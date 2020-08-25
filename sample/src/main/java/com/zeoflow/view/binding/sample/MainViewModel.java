@@ -1,6 +1,7 @@
 package com.zeoflow.view.binding.sample;
 
 import android.Manifest;
+import android.widget.Toast;
 
 import androidx.databinding.ObservableField;
 
@@ -40,5 +41,6 @@ public class MainViewModel extends ViewModel
 
     public void showDialog()
     {
+        Toast.makeText(getApplicationContext(), "this", Toast.LENGTH_SHORT).show();
     }
 }
