@@ -18,13 +18,11 @@ import androidx.databinding.BaseObservable;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-
 /**
  * ViewModel base class. Every ViewModel must extend this class
  */
 public abstract class ViewModel extends BaseObservable
 {
-
     private ViewInterface<?, ? extends ViewModel> mView;
     private String mViewModelId;
     private Handler mHandler = new Handler();
@@ -34,11 +32,9 @@ public abstract class ViewModel extends BaseObservable
     private Context mApplicationContext;
     private PermissionsManager mPermissionsManager = new PermissionsManager(this);
 
-
     public ViewModel()
     {
     }
-
 
     /**
      * onResume callback from the View
@@ -49,7 +45,6 @@ public abstract class ViewModel extends BaseObservable
         mRunning = true;
     }
 
-
     /**
      * onPause callback from the View
      */
@@ -58,7 +53,6 @@ public abstract class ViewModel extends BaseObservable
     {
         mRunning = false;
     }
-
 
     /**
      * Returns true if the Activity/Fragment is in running state(not paused) at the moment
@@ -69,7 +63,6 @@ public abstract class ViewModel extends BaseObservable
     {
         return hasViewAttached() && mRunning;
     }
-
 
     /**
      * Called after the View is being destroyed and therefore detached from the ViewModel
@@ -82,7 +75,6 @@ public abstract class ViewModel extends BaseObservable
         mView = null;
     }
 
-
     /**
      * Called after the View is attached to this ViewModel
      *
@@ -92,7 +84,6 @@ public abstract class ViewModel extends BaseObservable
     public void onViewAttached(boolean firstAttachment)
     {
     }
-
 
     /**
      * Called after this ViewModel instance was destroyed and removed from cache
@@ -106,7 +97,6 @@ public abstract class ViewModel extends BaseObservable
         mUiThreadTaskQueue.clear();
     }
 
-
     /**
      * Getter for currently attached View
      *
@@ -116,7 +106,6 @@ public abstract class ViewModel extends BaseObservable
     {
         return mView;
     }
-
 
     /**
      * Provides Context instance
@@ -129,7 +118,6 @@ public abstract class ViewModel extends BaseObservable
         else return mView.getContext();
     }
 
-
     /**
      * Provides Application Context instance
      *
@@ -140,25 +128,21 @@ public abstract class ViewModel extends BaseObservable
         return mApplicationContext;
     }
 
+    void setApplicationContext(Context applicationContext)
+    {
+        mApplicationContext = applicationContext;
+    }
 
     public PermissionsManager getPermissionsManager()
     {
         return mPermissionsManager;
     }
 
-
-    void setApplicationContext(Context applicationContext)
-    {
-        mApplicationContext = applicationContext;
-    }
-
-
     @CallSuper
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
     {
         getPermissionsManager().onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
 
     /**
      * Provides an Activity instance
@@ -171,7 +155,6 @@ public abstract class ViewModel extends BaseObservable
         else return mView.getActivity();
     }
 
-
     /**
      * Helper method to determine if View is attached at the moment
      *
@@ -182,7 +165,6 @@ public abstract class ViewModel extends BaseObservable
         return mView != null;
     }
 
-
     /**
      * @return An app unique identifier for the current viewmodel instance (will be kept during orientation
      * change). This identifier will be reset in case the corresponding activity is killed.
@@ -192,12 +174,10 @@ public abstract class ViewModel extends BaseObservable
         return mViewModelId;
     }
 
-
     void setViewModelId(String viewModelId)
     {
         mViewModelId = viewModelId;
     }
-
 
     /**
      * Called after the ViewModel is instantiated
@@ -208,7 +188,6 @@ public abstract class ViewModel extends BaseObservable
         mUiThread = Thread.currentThread();
     }
 
-
     /**
      * Convenience method for binding's root View
      *
@@ -218,7 +197,6 @@ public abstract class ViewModel extends BaseObservable
     {
         return getView().getBinding().getRoot();
     }
-
 
     /**
      * Runs the specified action on the UI thread. If the current thread is the UI
@@ -232,7 +210,6 @@ public abstract class ViewModel extends BaseObservable
         internalRunOnUiThreadNow(action);
     }
 
-
     /**
      * Convenience method for Handler.postDelayed()
      *
@@ -244,12 +221,9 @@ public abstract class ViewModel extends BaseObservable
         mHandler.postDelayed(runnable, delayMs);
     }
 
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-
     }
-
 
     /**
      * Bind a new View instance
@@ -260,7 +234,6 @@ public abstract class ViewModel extends BaseObservable
     {
         mView = viewInterface;
     }
-
 
     /**
      * Convenience method to retrieve Resources from Context resources
@@ -276,7 +249,6 @@ public abstract class ViewModel extends BaseObservable
         return getContext().getResources();
     }
 
-
     /**
      * Convenience method to retrieve String resource from Context resources
      * <p>
@@ -291,7 +263,6 @@ public abstract class ViewModel extends BaseObservable
             return null;
         return getContext().getString(resource);
     }
-
 
     /**
      * Convenience method to retrieve String resource from Context resources
@@ -309,7 +280,6 @@ public abstract class ViewModel extends BaseObservable
         return getContext().getString(resource, formatArgs);
     }
 
-
     /**
      * Convenience method to retrieve Drawable resource from Context resources
      * <p>
@@ -324,7 +294,6 @@ public abstract class ViewModel extends BaseObservable
             return null;
         return ContextCompat.getDrawable(getContext(), resource);
     }
-
 
     /**
      * Convenience method to retrieve Color resource from Context resources
@@ -341,7 +310,6 @@ public abstract class ViewModel extends BaseObservable
         return ContextCompat.getColor(getContext(), resource);
     }
 
-
     void internalRunAllUiTasksInQueue()
     {
         while (!mUiThreadTaskQueue.isEmpty())
@@ -349,7 +317,6 @@ public abstract class ViewModel extends BaseObservable
             internalRunOnUiThreadNow(mUiThreadTaskQueue.poll());
         }
     }
-
 
     private void internalRunOnUiThreadNow(Runnable action)
     {
@@ -370,6 +337,5 @@ public abstract class ViewModel extends BaseObservable
                 mUiThreadTaskQueue.add(action);
         }
     }
-
 
 }

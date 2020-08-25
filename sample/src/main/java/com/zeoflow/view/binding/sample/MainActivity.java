@@ -7,10 +7,8 @@ import androidx.annotation.Nullable;
 import com.zeoflow.view.binding.ViewModelActivity;
 import com.zeoflow.view.binding.sample.databinding.ActivityMainBinding;
 
-
 public class MainActivity extends ViewModelActivity<ActivityMainBinding, MainViewModel>
 {
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {

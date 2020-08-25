@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.databinding.ViewDataBinding;
 
-
 /**
  * An interface representing View in MVVM architecture
  * <p>
@@ -15,11 +14,17 @@ import androidx.databinding.ViewDataBinding;
  *
  * @param <T> Generated Data Binding layout class
  */
-public interface ViewInterface<T extends ViewDataBinding, S extends ViewModel> {
-	Context getContext();
-	T getBinding();
-	Activity getActivity();
-	Bundle getBundle();
-	void startActivityForResult(Intent intent, int requestCode);
-	void startActivityForResult(Intent intent, int requestCode, Bundle bundle);
+public interface ViewInterface<T extends ViewDataBinding, S extends ViewModel>
+{
+    Context getContext();
+
+    T getBinding();
+
+    Activity getActivity();
+
+    Bundle getBundle();
+
+    void startActivityForResult(Intent intent, int requestCode);
+
+    void startActivityForResult(Intent intent, int requestCode, Bundle bundle);
 }
